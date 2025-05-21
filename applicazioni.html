@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicazioni della Crittografia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .app-card {
+            position: relative;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+        }
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .app-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .app-table th {
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 20px;
+            text-align: left;
+        }
+        
+        .app-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .app-table tr {
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+        
+        .app-table tr:hover {
+            background-color: var(--bg-secondary);
+        }
+        
+        .app-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-tab:hover {
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+        
+        .category-tab.active {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .app-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .security-meter {
+            height: 8px;
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .security-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+        
+        .highlight-box {
+            background-color: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .binary-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding-top: 15px;
+            display: none;
+        }
+        
+        .faq-active .faq-answer {
+            display: block;
+            animation: fadeInDown 0.5s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            padding: 50px;
+            border-radius: 12px;
+            margin: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                Crittografia<span></span>
+            </a>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html" class="active">Applicazioni</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="binary-background" id="binary-background"></div>
+        <div class="hero-content">
+            <h1>Applicazioni della <span style="color: var(--accent);">Crittografia</span></h1>
+            <p>Scopri come la scienza dei messaggi segreti protegge la tua vita digitale quotidiana attraverso numerose applicazioni pratiche.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Usi Quotidiani</h2>
+            <p class="section-subtitle">La crittografia è ovunque intorno a noi, anche se spesso non ce ne accorgiamo</p>
+        </div>
+
+        <div class="category-tabs" id="category-tabs">
+            <div class="category-tab active" data-category="all">Tutti</div>
+            <div class="category-tab" data-category="comunicazione">Comunicazione</div>
+            <div class="category-tab" data-category="finanza">Finanza</div>
+            <div class="category-tab" data-category="sicurezza">Sicurezza</div>
+            <div class="category-tab" data-category="tecnologia">Tecnologia</div>
+        </div>
+
+        <div class="app-grid" id="app-grid">
+            <div class="app-card" data-category="comunicazione">
+                <i class="fas fa-comments app-icon"></i>
+                <h3>Messaggistica Sicura</h3>
+                <p>WhatsApp, Signal e Telegram utilizzano la crittografia end-to-end per proteggere le conversazioni private.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 95%"></div>
+                </div>
+                <small>Livello di sicurezza: Molto alto</small>
+            </div>
+
+            <div class="app-card" data-category="finanza">
+                <i class="fas fa-credit-card app-icon"></i>
+                <h3>Pagamenti Online</h3>
+                <p>I protocolli di pagamento sicuro utilizzano la crittografia per proteggere le informazioni delle carte di credito.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 90%"></div>
+                </div>
+                <small>Livello di sicurezza: Alto</small>
+            </div>
+
+            <div class="app-card" data-category="sicurezza">
+                <i class="fas fa-fingerprint app-icon"></i>
+                <h3>Autenticazione Biometrica</h3>
+                <p>Le impronte digitali e il riconoscimento facciale utilizzano hash crittografici per verificare l'identità.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 85%"></div>
+                </div>
+                <small>Livello di sicurezza: Alto</small>
+            </div>
+
+            <div class="app-card" data-category="tecnologia">
+                <i class="fas fa-wifi app-icon"></i>
+                <h3>WiFi Protetto</h3>
+                <p>I protocolli WPA2 e WPA3 utilizzano crittografia per proteggere le reti wireless domestiche.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 80%"></div>
+                </div>
+                <small>Livello di sicurezza: Medio-alto</small>
+            </div>
+
+            <div class="app-card" data-category="comunicazione">
+                <i class="fas fa-envelope app-icon"></i>
+                <h3>Email Cifrate</h3>
+                <p>Servizi come ProtonMail utilizzano crittografia per proteggere il contenuto delle email.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 85%"></div>
+                </div>
+                <small>Livello di sicurezza: Alto</small>
+            </div>
+
+            <div class="app-card" data-category="finanza">
+                <i class="fas fa-coins app-icon"></i>
+                <h3>Criptovalute</h3>
+                <p>Bitcoin, Ethereum e altre criptovalute si basano su algoritmi crittografici per garantire transazioni sicure.</p>
+                <div class="security-meter">
+                    <div class="security-fill" style="width: 95%"></div>
+                </div>
+                <small>Livello di sicurezza: Molto alto</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Crittografia nei Protocolli Internet</h2>
+            <p class="section-subtitle">Come la crittografia rende sicura la nostra navigazione in rete</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-info-circle" style="color: var(--accent);"></i> Lo sapevi?</h3>
+            <p>Il 95% del traffico web oggi è protetto tramite protocolli HTTPS, che usano la crittografia SSL/TLS per garantire la sicurezza delle informazioni scambiate.</p>
+        </div>
+
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>Protocollo</th>
+                    <th>Utilizzo</th>
+                    <th>Tipo di Crittografia</th>
+                    <th>Livello di Sicurezza</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>HTTPS</strong></td>
+                    <td>Navigazione web sicura</td>
+                    <td>SSL/TLS</td>
+                    <td>Alto</td>
+                </tr>
+                <tr>
+                    <td><strong>SSH</strong></td>
+                    <td>Accesso remoto sicuro a server</td>
+                    <td>RSA, ECDSA</td>
+                    <td>Molto alto</td>
+                </tr>
+                <tr>
+                    <td><strong>VPN</strong></td>
+                    <td>Connessioni sicure su reti pubbliche</td>
+                    <td>IPsec, OpenVPN</td>
+                    <td>Alto</td>
+                </tr>
+                <tr>
+                    <td><strong>PGP</strong></td>
+                    <td>Email cifrate</td>
+                    <td>RSA, AES</td>
+                    <td>Molto alto</td>
+                </tr>
+                <tr>
+                    <td><strong>FTPS</strong></td>
+                    <td>Trasferimento file sicuro</td>
+                    <td>SSL/TLS</td>
+                    <td>Medio-alto</td>
+                </tr>
+                <tr>
+                    <td><strong>DNSSEC</strong></td>
+                    <td>Protezione del DNS</td>
+                    <td>RSA, ECDSA</td>
+                    <td>Medio</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Crittografia e Settori Industriali</h2>
+            <p class="section-subtitle">Come diversi settori applicano la crittografia per proteggere dati sensibili</p>
+        </div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <h3>Settore Sanitario</h3>
+                <p>La crittografia protegge le cartelle cliniche digitali e garantisce la conformità a normative come il GDPR. I dati sensibili dei pazienti vengono cifrati sia durante la trasmissione che l'archiviazione.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3>Settore Bancario</h3>
+                <p>Le operazioni bancarie online, i pagamenti con carta e le app di mobile banking utilizzano sistemi crittografici avanzati per prevenire frodi e proteggere le transazioni finanziarie.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3>Settore Legale</h3>
+                <p>Studi legali e tribunali utilizzano la crittografia per proteggere documenti riservati, comunicazioni con i clienti e per garantire l'autenticità dei documenti tramite firme digitali.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Il Futuro della Crittografia</h2>
+            <p class="section-subtitle">Nuove sfide e tecnologie emergenti</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Presente</div>
+                    <h3 class="timeline-title">Crittografia Post-Quantum</h3>
+                    <p class="timeline-text">Sviluppo di algoritmi resistenti ai computer quantistici, che potrebbero potenzialmente rompere gli attuali sistemi crittografici come RSA.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2026-2028</div>
+                    <h3 class="timeline-title">Calcolo Omomorfico</h3>
+                    <p class="timeline-text">Elaborazione di dati cifrati senza necessità di decifrarli, permettendo analisi sicure su dati sensibili.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2028-2030</div>
+                    <h3 class="timeline-title">Crittografia Basata sull'Identità</h3>
+                    <p class="timeline-text">Sistemi dove l'identità dell'utente funge direttamente da chiave pubblica, semplificando la gestione delle chiavi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2030 e oltre</div>
+                    <h3 class="timeline-title">Crittografia Quantistica Commerciale</h3>
+                    <p class="timeline-text">Distribuzione di chiavi quantistiche accessibile a livello commerciale, offrendo sicurezza teoricamente inviolabile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Domande Frequenti</h2>
+            <p class="section-subtitle">Tutto ciò che dovresti sapere sulla crittografia applicata</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Quanto è sicura la crittografia attuale?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Gli algoritmi crittografici moderni come AES-256 e RSA 2048-bit sono considerati estremamente sicuri contro gli attacchi con tecnologia attuale. Tuttavia, l'avvento dei computer quantistici potrebbe rappresentare una minaccia per alcuni tipi di crittografia, motivo per cui si stanno sviluppando algoritmi post-quantum.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Cosa significa "crittografia end-to-end"?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>La crittografia end-to-end significa che i messaggi vengono cifrati sul dispositivo del mittente e possono essere decifrati solo sul dispositivo del destinatario. Nemmeno il fornitore del servizio (come WhatsApp o Signal) può leggere il contenuto dei messaggi, garantendo così la massima privacy.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Perché è importante la crittografia per la privacy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>La crittografia garantisce che le informazioni personali rimangano private anche quando vengono trasmesse su reti pubbliche. Protegge da furti di identità, sorveglianza non autorizzata e accesso a dati sensibili, svolgendo un ruolo fondamentale nella protezione dei diritti digitali.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section">
+        <h2>Vuoi saperne di più sulla crittografia?</h2>
+        <a href="tipi.html" class="cta-button">Scopri i tipi di crittografia <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <a href="#" class="footer-logo">
+                    Crittografia<span></span>
+                </a>
+                <p class="footer-desc">Un viaggio alla scoperta della scienza che protegge le nostre informazioni digitali.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Link Rapidi</h3>
+                <ul class="footer-links">
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html">Applicazioni</a></li>
+                    <li><a href="conclusioni.html">Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">© Crittografia. </div>
+    </footer>
+
+    <script>
+        // Effetto binario per lo sfondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const binaryBackground = document.getElementById('binary-background');
+            
+            // Crea l'effetto codice binario
+            for (let i = 0; i < 50; i++) {
+                const binary = document.createElement('div');
+                binary.classList.add('animated-binary');
+                binary.style.left = `${Math.random() * 100}%`;
+                binary.style.top = `${Math.random() * 100}%`;
+                binary.style.opacity = 0.1 + Math.random() * 0.1;
+                binary.textContent = Math.random() > 0.5 ? '1' : '0';
+                binaryBackground.appendChild(binary);
+            }
+            
+            // Cambia il codice binario ogni secondo
+            setInterval(() => {
+                const binaries = document.querySelectorAll('.animated-binary');
+                binaries.forEach(binary => {
+                    binary.textContent = Math.random() > 0.5 ? '1' : '0';
+                });
+            }, 1000);
+            
+            // Gestisci i tab delle categorie
+            const tabs = document.querySelectorAll('.category-tab');
+            const cards = document.querySelectorAll('.app-card');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Rimuovi la classe active da tutti i tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Aggiungi la classe active al tab cliccato
+                    tab.classList.add('active');
+                    
+                    const category = tab.getAttribute('data-category');
+                    
+                    // Mostra/nascondi le card in base alla categoria
+                    cards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animazione del riempimento delle barre di sicurezza
+            const securityFills = document.querySelectorAll('.security-fill');
+            securityFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 300);
+            });
+            
+            // Gestisci le FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    faqItem.classList.toggle('faq-active');
+                    
+                    // Cambia l'icona
+                    const icon = question.querySelector('i');
+                    if (faqItem.classList.contains('faq-active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+            
+            // Animazione di scroll reveal
+            function revealElements() {
+                const elements = document.querySelectorAll('.section-title, .app-card, .card, .timeline-item, .highlight-box, .app-table, .faq-item');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('revealed');
+                    }
+                });
+            }
+            
+            // Aggiungi la classe reveal-element a tutti gli elementi da animare
+            const elementsToReveal = document.querySelectorAll('.section-title, .app-card, .card, .timeline-item, .highlight-box, .app-table, .faq-item');
+            elementsToReveal.forEach(element => {
+                element.classList.add('reveal-element');
+            });
+            
+            // Esegui revealElements al caricamento e allo scroll
+            window.addEventListener('scroll', revealElements);
+            window.addEventListener('load', revealElements);
+        });
+    </script>
+</body>
+</html>

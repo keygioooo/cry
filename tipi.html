@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipi di Crittografia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                Crittografia<span></span>
+            </a>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html">Applicazioni</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+     <section class="section" id="algoritmi-cifratura">
+        <div class="section-title">
+            <h2>Algoritmi di Cifratura</h2>
+            <p class="section-subtitle">Sequenza di istruzioni che trasforma un messaggio in chiaro in un messaggio cifrato.</p>
+        </div>
+        
+        <div class="highlight-box">
+            <p>Un <strong>algoritmo di cifratura</strong> è una <strong>sequenza di istruzioni</strong> (un procedimento matematico) che serve per <strong>trasformare</strong> un messaggio in chiaro (testo leggibile) in un messaggio cifrato (testo illeggibile senza la chiave).</p>
+        </div>
+        
+        <div class="animation-container">
+            <div class="moving-message">TESTO IN CHIARO → ALGORITMO + CHIAVE → 01001001010101110010111 → ALGORITMO + CHIAVE → TESTO IN CHIARO</div>
+            <div class="lock-icon"><i class="fas fa-lock"></i></div>
+        </div>
+    </section>
+
+    <section class="section" id="chiavi-cifratura" style="background-color: var(--bg-secondary);">
+        <div class="section-title">
+            <h2>Chiavi di Cifratura</h2>
+            <p class="section-subtitle">Il valore segreto che sblocca il contenuto cifrato.</p>
+        </div>
+        
+        <div class="highlight-box">
+            <p>La <strong>chiave di cifratura</strong> è un <strong>valore segreto</strong> che l'algoritmo usa per cifrare o decifrare il messaggio. Senza la chiave giusta, <strong>non è possibile leggere il contenuto cifrato</strong>.</p>
+        </div>
+        
+        <div class="key-types">
+            <div class="key-card">
+                <h3><i class="fas fa-key"></i> Chiave Simmetrica</h3>
+                <p>Si utilizza la <strong>stessa chiave</strong> sia per cifrare che per decifrare i messaggi. È un sistema veloce, ma richiede che entrambe le parti condividano in modo sicuro la chiave.</p>
+                <div style="margin-top: 20px; text-align: center;">
+                    <i class="fas fa-lock" style="color: var(--accent); font-size: 24px; margin-right: 20px;"></i>
+                    <i class="fas fa-exchange-alt" style="color: var(--text-secondary); font-size: 24px;"></i>
+                    <i class="fas fa-unlock" style="color: var(--accent); font-size: 24px; margin-left: 20px;"></i>
+                </div>
+            </div>
+            
+            <div class="key-card">
+                <h3><i class="fas fa-keys"></i> Chiave Asimmetrica</h3>
+                <p>Si utilizzano <strong>due chiavi diverse</strong>: una <strong>pubblica</strong> per cifrare e una <strong>privata</strong> per decifrare. Se invio un messaggio cifrato con la <strong>tua chiave pubblica</strong>, solo tu (con la <strong>tua chiave privata</strong>) puoi leggerlo.</p>
+                <div style="margin-top: 20px; text-align: center;">
+                    <i class="fas fa-globe" style="color: var(--accent); font-size: 24px; margin-right: 20px;"></i>
+                    <i class="fas fa-arrow-right" style="color: var(--text-secondary); font-size: 24px;"></i>
+                    <i class="fas fa-user-shield" style="color: var(--accent); font-size: 24px; margin-left: 20px;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <table class="crypto-table" style="margin-top: 50px;">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descrizione</th>
+                    <th>Vantaggi</th>
+                    <th>Svantaggi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Simmetrica</td>
+                    <td>Una sola chiave per cifrare e decifrare</td>
+                    <td>Veloce ed efficiente</td>
+                    <td>Problema dello scambio sicuro delle chiavi</td>
+                </tr>
+                <tr>
+                    <td>Asimmetrica</td>
+                    <td>Due chiavi (pubblica e privata)</td>
+                    <td>Non richiede scambio di chiavi segrete</td>
+                    <td>Computazionalmente più lenta</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section" id="algoritmo-rsa">
+        <div class="section-title">
+            <h2>L'Algoritmo RSA</h2>
+            <p class="section-subtitle">Un potente sistema di crittografia asimmetrica.</p>
+        </div>
+        
+        <div class="highlight-box">
+            <p>L'<strong>algoritmo RSA</strong> è un sistema di crittografia molto importante, utilizzato per proteggere la privacy delle comunicazioni digitali. RSA si basa sulla teoria dei numeri e sulla difficoltà di fattorizzare numeri molto grandi in due fattori primi.</p>
+        </div>
+        
+        <div class="card-special">
+            <h3 style="margin-bottom: 20px;">Fasi dell'algoritmo RSA</h3>
+            
+            <div class="timeline-special">
+                <div class="timeline-special-item">
+                    <h4>Passo 1: Generare le chiavi</h4>
+                    <p>Per utilizzare RSA, si devono prima generare due chiavi:</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Si scelgono due numeri primi molto grandi, <strong>p</strong> e <strong>q</strong>.</li>
+                        <li>Si calcola il loro prodotto <strong>n = p * q</strong>.</li>
+                        <li>Si calcola la funzione di Eulero <strong>φ(n) = (p - 1) * (q - 1)</strong>.</li>
+                        <li>Si sceglie un numero <strong>e</strong> coprimo con φ(n).</li>
+                        <li>Si calcola il numero <strong>d</strong>, inverso di <strong>e</strong> modulo φ(n).</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Quindi, la <strong>chiave pubblica</strong> è formata dalla coppia (n, e), e la <strong>chiave privata</strong> dalla coppia (n, d).</p>
+                </div>
+                
+                <div class="timeline-special-item">
+                    <h4>Passo 2: Cifrare il messaggio</h4>
+                    <p>Per cifrare un messaggio, si usa la <strong>chiave pubblica</strong> (n, e). Il messaggio cifrato <strong>c</strong> si ottiene con questa formula:</p>
+                    <div class="crypto-example">c = m^e mod n</div>
+                </div>
+                
+                <div class="timeline-special-item">
+                    <h4>Passo 3: Decifrare il messaggio</h4>
+                    <p>Per decifrare il messaggio, il destinatario usa la <strong>chiave privata</strong> (n, d) e applica questa formula:</p>
+                    <div class="crypto-example">m = c^d mod n</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3 style="margin-bottom: 20px;">Perché è sicuro RSA?</h3>
+            <p>La sicurezza di RSA deriva dalla difficoltà di fattorizzare numeri grandi. Se qualcuno conoscesse solo <strong>n</strong> e <strong>e</strong>, non riuscirebbe a determinare facilmente <strong>p</strong> e <strong>q</strong>. Inoltre, calcolare <strong>d</strong> senza conoscere <strong>φ(n)</strong> è un compito praticamente impossibile per numeri molto grandi.</p>
+        </div>
+    </section>
+
+    <section class="section" id="autenticazione-affidabilita" style="background-color: var(--bg-secondary);">
+        <div class="section-title">
+            <h2>Autenticazione e Affidabilità</h2>
+            <p class="section-subtitle">Garantire l'identità dei mittenti e l'integrità dei messaggi.</p>
+        </div>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h3>Autenticazione</h3>
+                <p><strong>Autenticazione</strong> significa <strong>verificare l'identità</strong> di chi ha inviato un messaggio o chi sta accedendo a un sistema.</p>
+                <div style="margin-top: 15px;">
+                    <strong>Come si realizza?</strong>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Tramite <strong>firme digitali</strong>.</li>
+                        <li>Tramite <strong>certificati digitali</strong> (come HTTPS nei siti web).</li>
+                        <li>Con <strong>chiavi crittografiche</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Integrità</h3>
+                <p><strong>Affidabilità</strong> (o <strong>integrità</strong>) significa che il messaggio <strong>non è stato alterato</strong> durante la trasmissione.</p>
+                <div style="margin-top: 15px;">
+                    <strong>Esempio concreto:</strong>
+                    <p style="margin-top: 10px;">Se ordini un succo di frutta online, vuoi che arrivi <strong>quello che hai ordinato</strong>, non uno scaduto o danneggiato.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-check-double"></i>
+                </div>
+                <h3>Autenticazione + Integrità</h3>
+                <p>= Affidabilità della comunicazione</p>
+                <div style="margin-top: 15px;">
+                    <p>Quando:</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Sai <strong>chi</strong> ha inviato il messaggio,</li>
+                        <li>Sai che <strong>non è stato modificato</strong>,</li>
+                    </ul>
+                    <p style="margin-top: 10px;">allora puoi <strong>fidarti</strong> del contenuto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* Stili specifici per questa pagina */
+        .info-box {
+            background-color: rgba(139, 92, 246, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .example-box {
+            background-color: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .algorithms-box {
+            background-color: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .example-content {
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .example-content code {
+            display: block;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        
+        .compare-section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color:  rgb(15, 23, 42);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .compare-section h3 {
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        table th {
+            background-color: rgba(139, 92, 246, 0.1);
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: rgba(139, 92, 246, 0.05);
+        }
+        
+        .diagram-box {
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .diagram-box ol {
+            margin-left: 20px;
+        }
+        
+        .additional-section {
+            margin: 40px 0;
+        }
+        
+        .additional-section h3 {
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-card {
+            display: flex;
+            background-color: rgba(78, 72, 116, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .info-card-icon {
+            flex: 0 0 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            font-size: 24px;
+            color: white;
+        }
+        
+        .info-card-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .info-card-content h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        
+        .info-card-content ul, .info-card-content ol {
+            margin-left: 20px;
+        }
+        
+        /* Animazione degli elementi */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .reveal-element.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        // Script per animazione degli elementi al caricamento
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal-element');
+            
+            function revealOnScroll() {
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('revealed');
+                    }
+                });
+            }
+            
+            // Rivela gli elementi visibili al caricamento
+            revealOnScroll();
+            
+            // Rivela gli elementi durante lo scroll
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduzione alla Crittografia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                Crittografia<span></span>
+            </a>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html">Applicazioni</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-title reveal-element">
+            <h2>Introduzione alla Crittografia</h2>
+            <p class="section-subtitle">La scienza che trasforma messaggi leggibili in codici sicuri e indecifrabili.</p>
+        </div>
+        <div class="cards-container">
+            <div class="card reveal-element">
+                <div class="card-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Cos'è la Crittografia?</h3>
+                <p>La crittografia è la pratica e lo studio di tecniche per comunicare in modo sicuro in presenza di terzi. Si occupa della costruzione e dell'analisi di protocolli che impediscono a terzi di leggere messaggi privati.</p>
+            </div>
+            <div class="card reveal-element">
+                <div class="card-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3>Principi Fondamentali</h3>
+                <p>I principi fondamentali della crittografia, noti come CIA Triad (Confidentiality, Integrity, Availability) più Authentication e Non-repudiation, formano la base della sicurezza informatica:</p>
+
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-lock" style="color: var(--accent); position: absolute; left: 0; top: 4px;"></i>
+                        <strong>Confidenzialità:</strong> Garantisce che le informazioni siano accessibili solo agli utenti autorizzati.
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-shield-alt" style="color: var(--accent); position: absolute; left: 0; top: 4px;"></i>
+                        <strong>Integrità:</strong> Assicura che i dati non vengano alterati durante la trasmissione o l'archiviazione.
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-check-circle" style="color: var(--accent); position: absolute; left: 0; top: 4px;"></i>
+                        <strong>Autenticazione:</strong> Verifica l'identità di utenti e sistemi coinvolti nella comunicazione.
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-signature" style="color: var(--accent); position: absolute; left: 0; top: 4px;"></i>
+                        <strong>Non-ripudio:</strong> Impedisce a un mittente di negare di aver inviato un messaggio.
+                    </li>
+                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                        <i class="fas fa-server" style="color: var(--accent); position: absolute; left: 0; top: 4px;"></i>
+                        <strong>Disponibilità:</strong> Garantisce che i sistemi e i dati siano disponibili quando necessario.
+                    </li>
+                </ul>
+
+                <div style="overflow-x: auto; margin-top: 20px;">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid var(--border);">
+                        <thead>
+                            <tr style="background-color: rgba(139, 92, 246, 0.1);">
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border);">Principio</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border);">Meccanismi</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid var(--border);">Esempio di Applicazione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Confidenzialità</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Cifratura, controllo accessi, steganografia</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">AES per cifrare le comunicazioni HTTPS</td>
+                            </tr>
+                            <tr style="background-color: rgba(139, 92, 246, 0.05);">
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Integrità</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Funzioni hash, firme digitali, checksum</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">SHA-256 per verificare l'integrità dei download</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Autenticazione</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Password, certificati digitali, biometria</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Autenticazione a due fattori per accedere a Gmail</td>
+                            </tr>
+                            <tr style="background-color: rgba(139, 92, 246, 0.05);">
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Non-ripudio</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Firme digitali, timestamp, autorità di certificazione</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Firma digitale su documenti legali elettronici</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;"><strong>Disponibilità</strong></td>
+                                <td style="padding: 12px;">Ridondanza, backup, protezione DDoS</td>
+                                <td style="padding: 12px;">Distribuzione di sistemi su più data center</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card reveal-element">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Importanza Attuale</h3>
+                <p>Nell'era digitale, la crittografia è diventata essenziale per proteggere transazioni finanziarie, comunicazioni private, dati sensibili e molto altro, costituendo la spina dorsale della sicurezza informatica.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <a href="#" class="footer-logo">Crittografia<span></span></a>
+                <p class="footer-desc">La scienza che protegge i nostri dati nell'era digitale.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Link Utili</h3>
+                <ul class="footer-links">
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html">Applicazioni</a></li>
+                    <li><a href="conclusioni.html">Conclusioni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; La Scienza della Crittografia. 
+        </div>
+    </footer>
+
+    <script>
+        // Script per animazione degli elementi al caricamento
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal-element');
+            
+            function revealOnScroll() {
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('revealed');
+                    }
+                });
+            }
+            
+            // Rivela gli elementi visibili al caricamento
+            revealOnScroll();
+            
+            // Rivela gli elementi durante lo scroll
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>
