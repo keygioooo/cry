@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipi di Crittografia - Guida Completa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border: #475569;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--gradient);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animation Container */
+        .animation-container {
+            position: relative;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .moving-message {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--accent);
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .lock-icon {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 2rem;
+            color: var(--success);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Key Types */
+        .key-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .key-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .key-card:hover::before {
+            left: 100%;
+        }
+
+        .key-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: var(--accent);
+        }
+
+        .key-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Crypto Table */
+        .crypto-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .crypto-table th {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .crypto-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .crypto-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .crypto-table tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* RSA Algorithm Section */
+        .card-special {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-special {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-special::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient);
+        }
+
+        .timeline-special-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-special-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--bg-secondary);
+        }
+
+        .timeline-special-item h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .crypto-example {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Demo */
+        .demo-container {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .demo-input {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .input-group input {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(240, 147, 251, 0.2);
+        }
+
+        .demo-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .demo-output {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .key-types {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-special {
+                padding-left: 1rem;
+            }
+
+            .timeline-special-item {
+                padding-left: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-accent);
+            z-index: 999;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                Crittografia<span></span>
+            </a>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="intro.html">Introduzione</a></li>
+                    <li><a href="storia.html">Storia</a></li>
+                    <li><a href="tipi.html">Tipi di Crittografia</a></li>
+                    <li><a href="applicazioni.html">Applicazioni</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section fade-in" id="algoritmi-cifratura">
+            <div class="section-title">
+                <h2>Algoritmi di Cifratura</h2>
+                <p class="section-subtitle">Sequenza di istruzioni che trasforma un messaggio in chiaro in un messaggio cifrato attraverso processi matematici complessi.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p>Un <strong>algoritmo di cifratura</strong> è una <strong>sequenza di istruzioni matematiche</strong> che serve per <strong>trasformare</strong> un messaggio in chiaro (testo leggibile) in un messaggio cifrato (testo illeggibile senza la chiave). Questi algoritmi sono la base della sicurezza digitale moderna.</p>
+            </div>
+            
+            <div class="animation-container">
+                <div class="moving-message">📝 TESTO IN CHIARO → 🔐 ALGORITMO + CHIAVE → 🔢 01001001010101110010111 → 🔑 ALGORITMO + CHIAVE → 📝 TESTO IN CHIARO</div>
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+            </div>
+
+            <!-- Interactive Demo -->
+            <div class="demo-container">
+                <h3 style="color: var(--accent); margin-bottom: 1rem;">🧪 Demo Interattiva - Cifrario di Cesare</h3>
+                <div class="demo-input">
+                    <div class="input-group">
+                        <label for="plaintext">Testo da cifrare:</label>
+                        <input type="text" id="plaintext" placeholder="Inserisci il tuo messaggio...">
+                    </div>
+                    <div class="input-group">
+                        <label for="shift">Spostamento (chiave):</label>
+                        <input type="number" id="shift" value="3" min="1" max="25">
+                    </div>
+                    <button class="demo-button" onclick="caesarDemo()">Cifra il Messaggio</button>
+                </div>
+                <div class="demo-output" id="output" style="display: none;"></div>
+            </div>
+        </section>
+
+        <section class="section fade-in" id="chiavi-cifratura" style="background-color: var(--bg-secondary);">
+            <div class="section-title">
+                <h2>Chiavi di Cifratura</h2>
+                <p class="section-subtitle">Il valore segreto che sblocca il contenuto cifrato e garantisce la sicurezza delle comunicazioni.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p>La <strong>chiave di cifratura</strong> è un <strong>valore segreto</strong> che l'algoritmo usa per cifrare o decifrare il messaggio. Senza la chiave giusta, <strong>non è possibile leggere il contenuto cifrato</strong>. La lunghezza e la complessità della chiave determinano il livello di sicurezza.</p>
+            </div>
+            
+            <div class="key-types">
+                <div class="key-card">
+                    <h3><i class="fas fa-key"></i> Crittografia Simmetrica</h3>
+                    <p>Si utilizza la <strong>stessa chiave</strong> sia per cifrare che per decifrare i messaggi. È un sistema veloce ed efficiente, ma richiede che entrambe le parti condividano in modo sicuro la chiave segreta.</p>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <i class="fas fa-lock" style="color: var(--accent); font-size: 24px; margin-right: 20px;"></i>
+                        <i class="fas fa-exchange-alt" style="color: var(--text-secondary); font-size: 24px;"></i>
+                        <i class="fas fa-unlock" style="color: var(--accent); font-size: 24px; margin-left: 20px;"></i>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">
+                        <strong>Esempi:</strong> AES, DES, 3DES, Blowfish
+                    </div>
+                </div>
+                
+                <div class="key-card">
+                    <h3><i class="fas fa-keys"></i> Crittografia Asimmetrica</h3>
+                    <p>Si utilizzano <strong>due chiavi diverse</strong> ma matematicamente correlate: una <strong>pubblica</strong> per cifrare e una <strong>privata</strong> per decifrare. Chiunque può usare la tua chiave pubblica per inviarti messaggi sicuri che solo tu puoi decifrare.</p>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <i class="fas fa-globe" style="color: var(--success); font-size: 24px; margin-right: 20px;"></i>
+                        <i class="fas fa-arrow-right" style="color: var(--text-secondary); font-size: 24px;"></i>
+                        <i class="fas fa-user-shield" style="color: var(--accent); font-size: 24px; margin-left: 20px;"></i>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">
+                        <strong>Esempi:</strong> RSA, ECC, Diffie-Hellman
+                    </div>
+                </div>
+            </div>
+            
+            <table class="crypto-table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descrizione</th>
+                        <th>Vantaggi</th>
+                        <th>Svantaggi</th>
+                        <th>Uso Comune</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Simmetrica</strong></td>
+                        <td>Una sola chiave per cifrare e decifrare</td>
+                        <td>Veloce, efficiente, adatta per grandi volumi di dati</td>
+                        <td>Problema della distribuzione sicura delle chiavi</td>
+                        <td>Comunicazioni in tempo reale, file encryption</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Asimmetrica</strong></td>
+                        <td>Due chiavi (pubblica e privata)</td>
+                        <td>Non richiede scambio di chiavi segrete, supporta firme digitali</td>
+                        <td>Computazionalmente più lenta</td>
+                        <td>Email sicure, HTTPS, autenticazione</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section fade-in" id="algoritmo-rsa">
+            <div class="section-title">
+                <h2>L'Algoritmo RSA</h2>
+                <p class="section-subtitle">Il pilastro della crittografia moderna: scopri come funziona il sistema che protegge le tue comunicazioni online.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p>L'<strong>algoritmo RSA</strong> (Rivest-Shamir-Adleman) è un sistema di crittografia asimmetrica fondamentale per la sicurezza digitale. Inventato nel 1977, RSA si basa sulla difficoltà computazionale di fattorizzare numeri molto grandi in fattori primi. Questa proprietà matematica rende RSA estremamente sicuro quando implementato correttamente.</p>
+            </div>
+            
+            <div class="card-special">
+                <h3 style="margin-bottom: 20px; color: var(--accent);">🔍 Come Funziona RSA - Passo dopo Passo</h3>
+                
+                <div class="timeline-special">
+                    <div class="timeline-special-item">
+                        <h4>🔧 Passo 1: Generazione delle Chiavi</h4>
+                        <p>Il processo inizia con la generazione di una coppia di chiavi:</p>
+                        <ul style="margin-top: 10px; margin-left: 20px; color: var(--text-secondary);">
+                            <li>Si scelgono due numeri primi molto grandi, <strong>p</strong> e <strong>q</strong> (solitamente di centinaia di cifre)</li>
+                            <li>Si calcola il loro prodotto <strong>n = p × q</strong> (questo sarà pubblico)</li>
+                            <li>Si calcola la funzione di Eulero <strong>φ(n) = (p - 1) × (q - 1)</strong></li>
+                            <li>Si sceglie un numero <strong>e</strong> coprimo con φ(n), solitamente 65537</li>
+                            <li>Si calcola <strong>d</strong>, l'inverso moltiplicativo di <strong>e</strong> modulo φ(n)</li>
+                        </ul>
+                        <div style="margin-top: 15px; padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+                            <strong>Risultato:</strong><br>
+                            • <strong>Chiave pubblica:</strong> (n, e)<br>
+                            • <strong>Chiave privata:</strong> (n, d)
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-special-item">
+                        <h4>🔐 Passo 2: Cifratura del Messaggio</h4>
+                        <p>Per cifrare un messaggio <strong>m</strong>, si usa la <strong>chiave pubblica</strong> del destinatario:</p>
+                        <div class="crypto-example">c = m<sup>e</sup> mod n</div>
+                        <p style="color: var(--text-secondary); margin-top: 10px;">Dove <strong>c</strong> è il messaggio cifrato che può essere inviato pubblicamente senza rischi.</p>
+                    </div>
+                    
+                    <div class="timeline-special-item">
+                        <h4>🔓 Passo 3: Decifratura del Messaggio</h4>
+                        <p>Il destinatario usa la sua <strong>chiave privata</strong> per decifrare:</p>
+                        <div class="crypto-example">m = c<sup>d</sup> mod n</div>
+                        <p style="color: var(--text-secondary); margin-top: 10px;">Solo chi possiede la chiave privata <strong>d</strong> può recuperare il messaggio originale.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <h3 style="margin-bottom: 20px; color: var(--accent);">🛡️ Perché RSA è Sicuro?</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4>Complessità Matematica</h4>
+                        <p>La sicurezza di RSA si basa sul "problema della fattorizzazione": dato n = p × q, è computazionalmente impossibile trovare p e q se sono sufficientemente grandi.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Tempo Computazionale</h4>
+                        <p>Con le tecnologie attuali, fattorizzare un numero di 2048 bit richiederebbe migliaia di anni anche ai computer più potenti.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h4>Segretezza delle Chiavi</h4>
+                        <p>Anche conoscendo n ed e (chiave pubblica), calcolare d (chiave privata) senza conoscere p e q è praticamente impossibile.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSA Example -->
+            <div class="demo-container">
+                <h3 style="color: var(--accent); margin-bottom: 1rem;">📊 Esempio Pratico di RSA (con numeri piccoli)</h3>
+                <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px; font-family: 'Courier New', monospace;">
+                    <div><strong>1. Selezione dei primi:</strong> p = 61, q = 53</div>
+                    <div><strong>2. Calcolo di n:</strong> n = 61 × 53 = 3233</div>
+                    <div><strong>3. Calcolo di φ(n):</strong> φ(n) = 60 × 52 = 3120</div>
+                    <div><strong>4. Selezione di e:</strong> e = 17 (coprimo con 3120)</div>
+                    <div><strong>5. Calcolo di d:</strong> d = 2753 (inverso di 17 mod 3120)</div>
+                    <br>
+                    <div style="color: var(--success);"><strong>Chiave pubblica:</strong> (3233, 17)</div>
+                    <div style="color: var(--accent);"><strong>Chiave privata:</strong> (3233, 2753)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in" id="autenticazione-affidabilita" style="background-color: var(--bg-secondary);">
+            <div class="section-title">
+                <h2>Autenticazione e Integrità</h2>
+                <p class="section-subtitle">Garantire l'identità dei mittenti e l'integrità dei messaggi: i pilastri della comunicazione sicura.</p>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Autenticazione</h3>
+                    <p><strong>Autenticazione</strong> significa <strong>verificare l'identità</strong> di chi ha inviato un messaggio o chi sta tentando di accedere a un sistema. È come mostrare un documento d'identità digitale.</p>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Metodi principali:</strong>
+                        <ul style="margin-top: 10px; margin-left: 20px; color: var(--text-secondary);">
+                            <li><strong>Firme digitali</strong> - Prove crittografiche di autenticità</li>
+                            <li><strong>Certificati digitali</strong> - Come i certificati HTTPS dei siti web</li>
+                            <li><strong>Autenticazione a due fattori (2FA)</strong> - Password + dispositivo fisico</li>
+                            <li><strong>Biometria</strong> - Impronte digitali, riconoscimento facciale</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integrità dei Dati</h3>
+                    <p><strong>Integrità</strong> significa garantire che il messaggio <strong>non sia stato alterato</strong> durante la trasmissione. È come sigillare una lettera per verificare che nessuno l'abbia aperta.</p>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <strong>Tecniche utilizzate:</strong>
+                        <ul style="margin-top: 10px; margin-left: 20px; color: var(--text-secondary);">
+                            <li><strong>Hash crittografici</strong> - "Impronte digitali" dei dati</li>
+                            <li><strong>Checksum</strong> - Verifiche di integrità semplici</li>
+                            <li><strong>Message Authentication Code (MAC)</strong> - Hash con chiave segreta</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>Comunicazione Sicura</h3>
+                    <p><strong>Autenticazione + Integrità = Fiducia totale</strong></p>
+                    <div style="margin-top: 15px; text-align: left;">
+                        <p>Quando hai:</p>
+                        <ul style="margin-top: 10px; margin-left: 20px; color: var(--text-secondary);">
+                            <li><strong>Certezza dell'identità</strong> del mittente</li>
+                            <li><strong>Garanzia di integrità</strong> del messaggio</li>
+                            <li><strong>Riservatezza</strong> del contenuto</li>
+                        </ul>
+                        <p style="margin-top: 10px; color: var(--success); font-weight: bold;">Puoi fidarti completamente della comunicazione!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hash Demo -->
+            <div class="demo-container">
+                <h3 style="color: var(--accent); margin-bottom: 1rem;">🔍 Demo: Verifica dell'Integrità con Hash</h3>
+                <div class="demo-input">
+                    <div class="input-group">
+                        <label for="hashInput">Inserisci un messaggio:</label>
+                        <input type="text" id="hashInput" placeholder="Il tuo messaggio da verificare..." oninput="generateHash()">
+                    </div>
+                </div>
+                <div class="demo-output" id="hashOutput" style="display: none;"></div>
+                <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> Prova a modificare anche solo una lettera: l'hash cambierà completamente!
+                </p>
+            </div>
+
+            <!-- Digital Signature Explanation -->
+            <div class="card-special" style="margin-top: 3rem;">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem;">✍️ Le Firme Digitali: Come Funzionano</h3>
+                
+                <div class="timeline-special">
+                    <div class="timeline-special-item">
+                        <h4>1. Creazione della Firma</h4>
+                        <p>Il mittente:</p>
+                        <ul style="margin-left: 20px; color: var(--text-secondary);">
+                            <li>Calcola l'<strong>hash</strong> del messaggio</li>
+                            <li>Cifra l'hash con la sua <strong>chiave privata</strong></li>
+                            <li>Allega questa "firma" al messaggio</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-special-item">
+                        <h4>2. Verifica della Firma</h4>
+                        <p>Il destinatario:</p>
+                        <ul style="margin-left: 20px; color: var(--text-secondary);">
+                            <li>Calcola l'<strong>hash</strong> del messaggio ricevuto</li>
+                            <li>Decifra la firma con la <strong>chiave pubblica</strong> del mittente</li>
+                            <li>Confronta i due hash: se coincidono, la firma è <strong>valida</strong>!</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+                    <h4 style="color: var(--success); margin-bottom: 1rem;">✅ Vantaggi delle Firme Digitali</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>🔒 Non Ripudio:</strong><br>
+                            <span style="color: var(--text-secondary);">Il mittente non può negare di aver inviato il messaggio</span>
+                        </div>
+                        <div>
+                            <strong>👤 Autenticazione:</strong><br>
+                            <span style="color: var(--text-secondary);">Conferma l'identità del mittente</span>
+                        </div>
+                        <div>
+                            <strong>🛡️ Integrità:</strong><br>
+                            <span style="color: var(--text-secondary);">Qualsiasi modifica invalida la firma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Advanced Topics Section -->
+        <section class="section fade-in" id="advanced-topics">
+            <div class="section-title">
+                <h2>Argomenti Avanzati</h2>
+                <p class="section-subtitle">Approfondimenti sui concetti più sofisticati della crittografia moderna.</p>
+            </div>
+
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Crittografia Quantistica</h3>
+                    <p>La <strong>crittografia quantistica</strong> sfrutta i principi della meccanica quantistica per creare sistemi di comunicazione teoricamente inviolabili.</p>
+                    <div style="margin-top: 15px; text-align: left; color: var(--text-secondary);">
+                        <strong>Caratteristiche:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>Basata sui principi dell'incertezza quantistica</li>
+                            <li>Rileva automaticamente tentativi di intercettazione</li>
+                            <li>Rappresenta il futuro della sicurezza informatica</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <h3>Crittografia Ellittica (ECC)</h3>
+                    <p>La <strong>crittografia a curve ellittiche</strong> offre la stessa sicurezza di RSA ma con chiavi molto più corte, risultando più efficiente.</p>
+                    <div style="margin-top: 15px; text-align: left; color: var(--text-secondary);">
+                        <strong>Vantaggi:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>Chiavi più piccole = maggiore efficienza</li>
+                            <li>Ideale per dispositivi mobili</li>
+                            <li>Minore consumo energetico</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Funzioni Hash Crittografiche</h3>
+                    <p>Le <strong>funzioni hash</strong> trasformano dati di qualsiasi dimensione in una stringa di lunghezza fissa, creando "impronte digitali" uniche.</p>
+                    <div style="margin-top: 15px; text-align: left; color: var(--text-secondary);">
+                        <strong>Esempi comuni:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>SHA-256 (usato in Bitcoin)</li>
+                            <li>MD5 (obsoleto, non sicuro)</li>
+                            <li>SHA-3 (ultimo standard)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Applications Section -->
+        <section class="section fade-in" id="practical-applications" style="background-color: var(--bg-secondary);">
+            <div class="section-title">
+                <h2>Applicazioni nel Mondo Reale</h2>
+                <p class="section-subtitle">Dove incontri la crittografia nella vita quotidiana senza accorgertene.</p>
+            </div>
+
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>HTTPS e Navigazione Web</h3>
+                    <p>Ogni volta che vedi il <strong>lucchetto verde</strong> nel browser, stai usando la crittografia. HTTPS protegge tutti i tuoi dati durante la navigazione.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>App di Messaggistica</h3>
+                    <p><strong>WhatsApp, Signal, Telegram</strong> usano la crittografia end-to-end: solo tu e il destinatario potete leggere i messaggi.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Pagamenti Online</h3>
+                    <p>Le tue carte di credito e i pagamenti digitali sono protetti da <strong>multiple layers</strong> di crittografia avanzata.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-bitcoin-sign"></i>
+                    </div>
+                    <h3>Criptovalute</h3>
+                    <p><strong>Bitcoin, Ethereum</strong> e altre criptovalute esistono grazie alla crittografia, che garantisce sicurezza e autenticità delle transazioni.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Storage</h3>
+                    <p>I tuoi file su <strong>Google Drive, Dropbox, iCloud</strong> sono crittografati sia durante il trasferimento che nell'archiviazione.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Dispositivi Mobili</h3>
+                    <p>I tuoi <strong>smartphone e tablet</strong> usano la crittografia per proteggere foto, contatti, app e dati personali.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Fade in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Caesar Cipher Demo
+        function caesarDemo() {
+            const plaintext = document.getElementById('plaintext').value.toUpperCase();
+            const shift = parseInt(document.getElementById('shift').value);
+            
+            if (!plaintext.trim()) {
+                alert('Inserisci un messaggio da cifrare!');
+                return;
+            }
+
+            let ciphertext = '';
+            for (let i = 0; i < plaintext.length; i++) {
+                const char = plaintext[i];
+                if (char >= 'A' && char <= 'Z') {
+                    const shifted = ((char.charCodeAt(0) - 65 + shift) % 26) + 65;
+                    ciphertext += String.fromCharCode(shifted);
+                } else {
+                    ciphertext += char;
+                }
+            }
+
+            const output = document.getElementById('output');
+            output.style.display = 'block';
+            output.innerHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: var(--accent);">Risultato della Cifratura:</strong>
+                </div>
+                <div style="background: var(--bg-primary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div><strong>Testo originale:</strong> ${plaintext}</div>
+                    <div><strong>Spostamento:</strong> ${shift}</div>
+                    <div><strong>Testo cifrato:</strong> <span style="color: var(--accent); font-weight: bold;">${ciphertext}</span></div>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                    <i class="fas fa-lightbulb"></i> Per decifrare, usa uno spostamento di ${26 - shift} oppure -${shift}
+                </div>
+            `;
+        }
+
+        // Hash Demo
+        async function generateHash() {
+            const input = document.getElementById('hashInput').value;
+            const output = document.getElementById('hashOutput');
+            
+            if (!input.trim()) {
+                output.style.display = 'none';
+                return;
+            }
+
+            // Simple hash function for demo (not cryptographically secure)
+            let hash = 0;
+            for (let i = 0; i < input.length; i++) {
+                const char = input.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+            
+            // Convert to hexadecimal
+            const hexHash = Math.abs(hash).toString(16).padStart(8, '0');
+            
+            output.style.display = 'block';
+            output.innerHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: var(--accent);">Hash del Messaggio:</strong>
+                </div>
+                <div style="background: var(--bg-primary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div><strong>Input:</strong> "${input}"</div>
+                    <div><strong>Hash (simulato):</strong> <span style="color: var(--accent); font-weight: bold;">${hexHash}</span></div>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                    <i class="fas fa-info-circle"></i> Questo è un esempio semplificato. Gli hash reali sono molto più complessi!
+                </div>
+            `;
+        }
+
+        // Initialize hash demo
+        document.addEventListener('DOMContentLoaded', function() {
+            const hashInput = document.getElementById('hashInput');
+            if (hashInput) {
+                hashInput.addEventListener('input', generateHash);
+            }
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.card, .key-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
